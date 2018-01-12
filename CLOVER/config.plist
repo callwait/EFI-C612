@@ -12,7 +12,7 @@
 			<false/>
 			<key>Fixes</key>
 			<dict>
-				<key>FixHDA_8000</key>
+				<key>FixHDA</key>
 				<true/>
 			</dict>
 			<key>Name</key>
@@ -55,7 +55,18 @@
 			<key>DropOem</key>
 			<false/>
 			<key>Generate</key>
-			<true/>
+			<dict>
+				<key>APLF</key>
+				<true/>
+				<key>APSN</key>
+				<true/>
+				<key>CStates</key>
+				<true/>
+				<key>PStates</key>
+				<true/>
+				<key>PluginType</key>
+				<true/>
+			</dict>
 		</dict>
 	</dict>
 	<key>Boot</key>
@@ -65,13 +76,13 @@
 		<key>Debug</key>
 		<false/>
 		<key>DefaultVolume</key>
-		<string>Mac</string>
+		<string>EVO</string>
 		<key>Legacy</key>
 		<string>PBR</string>
 		<key>Secure</key>
 		<false/>
 		<key>Timeout</key>
-		<integer>30</integer>
+		<integer>2</integer>
 		<key>XMPDetection</key>
 		<integer>1</integer>
 	</dict>
@@ -85,7 +96,7 @@
 		<key>Audio</key>
 		<dict>
 			<key>Inject</key>
-			<string>1</string>
+			<string>12</string>
 		</dict>
 		<key>FakeID</key>
 		<dict>
@@ -168,34 +179,40 @@
 	</dict>
 	<key>KernelAndKextPatches</key>
 	<dict>
+		<key>AppleIntelCPUPM</key>
+		<false/>
 		<key>AppleRTC</key>
 		<true/>
-		<key>AsusAICPUPM</key>
-		<false/>
 		<key>Debug</key>
 		<false/>
 		<key>FakeCPUID</key>
 		<string>0x0306a0</string>
 		<key>KernelCpu</key>
 		<false/>
-		<key>KernelHaswellE</key>
-		<true/>
 		<key>KernelLapic</key>
 		<false/>
 		<key>KernelPm</key>
 		<true/>
+		<key>KernelXCPM</key>
+		<true/>
 		<key>KextsToPatch</key>
 		<array>
-		    <dict>
-	            <key>Comment</key>
-	            <string>change 15 port limit to 31 in XHCI kext (X99-series) 10.12, GA-X99P-SLI has possible 26 ports?</string>
-	            <key>Find</key>
-	            <data>g710////EA==</data>
-	            <key>Name</key>
-	            <string>AppleUSBXHCIPCI</string>
-	            <key>Replace</key>
-	            <data>g710////IA==</data>
-	        </dict>
+			<dict>
+				<key>Comment</key>
+				<string>change 15 port limit to 31 in XHCI kext (X99-series) 10.12, GA-X99P-SLI has possible 26 ports?</string>
+				<key>Disabled</key>
+				<false/>
+				<key>Find</key>
+				<data>
+				g710////EA==
+				</data>
+				<key>Name</key>
+				<string>AppleUSBXHCIPCI</string>
+				<key>Replace</key>
+				<data>
+				g710////IA==
+				</data>
+			</dict>
 			<dict>
 				<key>Comment</key>
 				<string>5960XPatch 10.12 by mano</string>
@@ -210,6 +227,34 @@
 				<key>Replace</key>
 				<data>
 				SIH7AAAAgA==
+				</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>10.9-10.12-AppleHDA/Realtek ALC885 (Optional)</string>
+				<key>Find</key>
+				<data>
+				ixnUEQ==
+				</data>
+				<key>Name</key>
+				<string>AppleHDA</string>
+				<key>Replace</key>
+				<data>
+				hQjsEA==
+				</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>AppleHDA/Resources/xml&gt;zml</string>
+				<key>Find</key>
+				<data>
+				eG1sLnps
+				</data>
+				<key>Name</key>
+				<string>AppleHDA</string>
+				<key>Replace</key>
+				<data>
+				em1sLnps
 				</data>
 			</dict>
 		</array>
@@ -231,7 +276,7 @@
 	<key>SystemParameters</key>
 	<dict>
 		<key>InjectKexts</key>
-		<string>Yes</string>
+		<string>YES</string>
 		<key>InjectSystemID</key>
 		<true/>
 		<key>NvidiaWeb</key>
